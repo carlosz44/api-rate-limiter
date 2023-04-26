@@ -1,14 +1,11 @@
 import express, { Application } from "express";
-import testRoutes from "../routes/test";
+import apiRoutes from "../routes/api";
 import cors from "cors";
 import { requestFilterMiddleware } from "../middlewares/requestFilter";
 
 export class Server {
   private app: Application;
   private port: string;
-  private apiPaths = {
-    test: "/api/test",
-  };
 
   constructor() {
     this.app = express();
@@ -30,6 +27,6 @@ export class Server {
   }
 
   routes() {
-    this.app.use(this.apiPaths.test, testRoutes);
+    this.app.use("/api", apiRoutes);
   }
 }

@@ -7,5 +7,7 @@ export function getTest(request: Request, response: Response) {
 }
 
 export function postTest(request: Request, response: Response) {
+  console.log(request.ip);
+
   response.json(request.body);
 }
