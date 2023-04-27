@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export default function requestFilterMiddleware(
+export default async function requestFilterMiddleware(
   request: Request,
   response: Response,
   next: NextFunction

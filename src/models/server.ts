@@ -1,6 +1,7 @@
 import express, { Application } from "express";
-import apiRoutes from "../routes/api";
 import cors from "cors";
+import apiRoutes from "../routes/api";
+import rateLimiterMiddleware from "../middlewares/rateLimiter";
 import requestFilterMiddleware from "../middlewares/requestFilter";
 
 export class Server {
@@ -23,6 +24,7 @@ export class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use(rateLimiterMiddleware);
     this.app.use(requestFilterMiddleware);
   }
 
