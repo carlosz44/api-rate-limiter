@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import apiRoutes from "../routes/api";
 import cors from "cors";
-import { requestFilterMiddleware } from "../middlewares/requestFilter";
+import requestFilterMiddleware from "../middlewares/requestFilter";
 
 export class Server {
   private app: Application;
