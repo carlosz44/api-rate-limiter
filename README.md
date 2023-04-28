@@ -23,7 +23,7 @@ Use `npm run start` to run the application.
 
 ## Running as Standalone
 
-To run the app standalone without Docker follow the [Redis installation guide](https://redis.io/docs/getting-started/installation/) and start the service, set the envinment variables `CONNECTIONS_LIMIT` and `LIMIT_DURATION_IN_SECONDS` using the `.env.example` file, then run:
+To run the app standalone follow the [Redis installation guide](https://redis.io/docs/getting-started/installation/) and start the service, set the envinment variables `CONNECTIONS_LIMIT` and `LIMIT_DURATION_IN_SECONDS` using the `.env.example` file, then run:
 
 ```bash
 npm install
@@ -32,11 +32,6 @@ npm install
 ```bash
 npm run dev
 ```
-
-## Running inside Docker
-
-To run the app via docker run
-`docker-compose up -d`
 
 ## Testing API calls
 
