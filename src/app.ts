@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Server } from "./models/server";
+import { Server } from "./server";
 
 const server = new Server();
 server.listen();

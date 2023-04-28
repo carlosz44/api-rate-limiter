@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getTest, postTest } from "../controllers/apiController";
+import { apiGet, apiPost } from "../controllers/apiController";
 
 const router = Router();
 
-router.get("/", getTest);
-router.post("/", postTest);
+router.get("/", apiGet);
+router.post("/", apiPost);
 
 export default router;

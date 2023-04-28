@@ -1,8 +1,8 @@
 import express, { Application } from "express";
 import cors from "cors";
-import apiRoutes from "../routes/api";
-import rateLimiterMiddleware from "../middlewares/rateLimiter";
-import requestFilterMiddleware from "../middlewares/requestFilter";
+import apiRoutes from "./routes/api";
+import rateLimiterMiddleware from "./middlewares/rateLimiter";
+import requestFilterMiddleware from "./middlewares/requestFilter";
 
 export class Server {
   private app: Application;

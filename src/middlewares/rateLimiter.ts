@@ -3,7 +3,7 @@ import rateLimiter from "../services/rateLimiter";
 import requestIp from "request-ip";
 
 const LIMIT_PER_MINUTE = process.env.REDIS_LIMIT_PER_MINUTE || 10;
-const LIMIT_DURATION = process.env.REDIS_LIMIT_PER_MINUTE || 60;
+const LIMIT_DURATION = process.env.REDIS_LIMIT_DURATION || 60;
 
 export default async function rateLimiterMiddleware(
   request: Request,

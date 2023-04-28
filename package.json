@@ -2,12 +2,24 @@
   "name": "rate-limiter",
   "version": "1.0.0",
   "description": "API rate limiter",
-  "main": "dist/index.js",
+  "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
     "dev": "nodemon ./src/app.ts",
     "start": "node dist/app.js",
-    "test": "jest"
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   },
   "repository": {
     "type": "git",
