@@ -1,8 +1,10 @@
 import express, { Application } from "express";
 import cors from "cors";
-import apiRoutes from "./routes/api";
-import rateLimiterMiddleware from "./middlewares/rateLimiter";
-import requestFilterMiddleware from "./middlewares/requestFilter";
+import apiRoutes from "../routes/api";
+import Logger from "./logger";
+import requestLogger from "./requestLogger";
+import rateLimiterMiddleware from "../middlewares/rateLimiter";
+import requestFilterMiddleware from "../middlewares/requestFilter";
 
 export class Server {
   private app: Application;
@@ -17,7 +19,7 @@ export class Server {
 
   listen() {
     this.app.listen(this.port, () =>
-      console.log(`Server running on port ${this.port}`)
+      Logger.debug(`Server running on port ${this.port}`)
     );
   }
 
@@ -26,6 +28,7 @@ export class Server {
     this.app.use(express.json());
     this.app.use(rateLimiterMiddleware);
     this.app.use(requestFilterMiddleware);
+    this.app.use(requestLogger);
   }
 
   routes() {

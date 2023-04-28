@@ -22,6 +22,11 @@ describe("Request filter middleware", () => {
         message3: "Valid message 2",
       },
     };
+    const expectedResponse = {
+      message1: "Valid message 1",
+      message2: "Valid message 2",
+      message3: "Valid message 2",
+    };
     requestFilterMiddleware(
       mockRequest as Request,
       mockResponse as Response,
@@ -30,6 +35,7 @@ describe("Request filter middleware", () => {
 
     expect(nextFunction).toBeCalledTimes(1);
     expect(Object.keys(mockRequest.body).length).toEqual(3);
+    expect(mockRequest.body).toEqual(expectedResponse);
   });
   test("It returns only the request payload parameter values that are not null or undefined", async () => {
     mockRequest = {
@@ -39,6 +45,9 @@ describe("Request filter middleware", () => {
         message3: undefined,
       },
     };
+    const expectedResponse = {
+      message1: "Valid message 1",
+    };
     requestFilterMiddleware(
       mockRequest as Request,
       mockResponse as Response,
@@ -47,5 +56,6 @@ describe("Request filter middleware", () => {
 
     expect(nextFunction).toBeCalledTimes(1);
     expect(Object.keys(mockRequest.body).length).toEqual(1);
+    expect(mockRequest.body).toEqual(expectedResponse);
   });
 });

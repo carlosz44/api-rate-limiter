@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import rateLimiter from "../services/rateLimiter";
+import morgan, { StreamOptions } from "morgan";
 import requestIp from "request-ip";
+import Loggger from "../configs/logger";
+import rateLimiter from "../services/rateLimiter";
 
 const LIMIT_PER_MINUTE = process.env.REDIS_LIMIT_PER_MINUTE || 10;
 const LIMIT_DURATION = process.env.REDIS_LIMIT_DURATION || 60;
@@ -10,8 +12,9 @@ export default async function rateLimiterMiddleware(
   response: Response,
   next: NextFunction
 ) {
+  const clientIp: string = requestIp.getClientIp(request)!;
   const result = await rateLimiter(
-    requestIp.getClientIp(request)!,
+    clientIp,
     parseInt(LIMIT_PER_MINUTE as string, 10),
     parseInt(LIMIT_DURATION as string, 10)
   );
@@ -20,6 +23,7 @@ export default async function rateLimiterMiddleware(
   response.setHeader("X-RateLimit-Remaining", result.remaining);
 
   if (!result.success) {
+    Loggger.error(`Exceeded request limit by client with IP ${clientIp}`);
     response
       .status(429)
       .json("Too many requests. Please try again in a few minutes.");
